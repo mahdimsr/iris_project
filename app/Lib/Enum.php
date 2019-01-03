@@ -46,4 +46,27 @@ class Enum
 	}
 
 
+
+	//task type
+	public static function taskType($type)
+	{
+		switch ($type)
+		{
+			case 'PERSONAL':
+
+				return 'شخصی';
+
+				break;
+
+			case 'MEETING':
+
+				return 'جلسه';
+
+				break;
+		}
+
+		return null;
+	}
+
+
 }

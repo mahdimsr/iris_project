@@ -6,7 +6,14 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="header">
-						<h4 class="title set-font">درج جلسه</h4>
+						<h4 class="title set-font" style="margin-bottom: 15px">درج جلسه</h4>
+						@if(session('userDuplicate'))
+
+							<div class="alert alert-danger set-font">
+								<strong>هشدار!</strong> <b>{{session('userDuplicate')}}</b> در زمان تعیین شده نمی تواند در جلسه حضور داشته باشد.
+							</div>
+
+						@endif
 					</div>
 					<div class="content">
 						<form method="post" action="{{action('Dashboard\\MeetingController@insert')}}">
@@ -15,7 +22,8 @@
 								<div class="col-md-6">
 									<div class="form-group" {{$errors->has('meetingPlace') ? 'has-error' : ''}}>
 										<label>مکان برگذاری</label>
-										<input type="text" class="form-control" name="meetingPlace" value="{{old('meetingPlace')}}">
+										<input type="text" class="form-control" name="meetingPlace"
+											   value="{{old('meetingPlace')}}">
 										<span class="help-block">{{ $errors->first('meetingPlace') }}</span>
 									</div>
 								</div>
@@ -23,7 +31,8 @@
 									<div class="form-group {{$errors->has('meetingTitle') ? 'has-error' : ''}}">
 										<label>موضوع جلسه</label>
 										<input type="text" class="form-control"
-											   placeholder="عنوان یا موضوعی که قرار است مطرح شود" name="meetingTitle" value="{{old('meetingTitle')}}">
+											   placeholder="عنوان یا موضوعی که قرار است مطرح شود" name="meetingTitle"
+											   value="{{old('meetingTitle')}}">
 										<span class="help-block">{{ $errors->first('meetingTitle') }}</span>
 									</div>
 								</div>
@@ -110,8 +119,6 @@
 
 		});
 
-		var idCounter = 0;
-
 
 
 		function addRow()
@@ -120,7 +127,7 @@
 			var id   = 'row' + idCounter + '';
 			var body = "<div class=\"col-md-1\">\n" +
 				"\t\t\t\t\t\t\t\t\t\t<div class=\"form-group center\">\n" +
-				"\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" onclick=\"removeRow('row1');\"\n" +
+				`\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" onclick=\"removeRow('row${idCounter}');\"\n` +
 				"\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"form-control btn-sm btn-danger btn-fill remove-btn\">حذف\n" +
 				"\t\t\t\t\t\t\t\t\t\t\t</button>\n" +
 				"\t\t\t\t\t\t\t\t\t\t</div>\n" +
@@ -149,27 +156,6 @@
 				"\t\t\t\t\t\t\t\t\t</div>";
 
 			addTag('userRow', 'div', 'row' + idCounter, body);
-		}
-
-
-
-		function addTag(parentId, elementTag, elementId, body)
-		{
-			var parentElement = document.getElementById(parentId);
-			var newElement    = document.createElement(elementTag);
-			newElement.setAttribute('id', elementId);
-			newElement.innerHTML = body;
-			parentElement.appendChild(newElement);
-		}
-
-
-
-		function removeRow(elementId)
-		{
-			console.log(elementId);
-			var element       = document.getElementById(elementId);
-			var parentElement = document.getElementById('userRow');
-			parentElement.removeChild(element);
 		}
 
 	</script>

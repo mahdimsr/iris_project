@@ -28,4 +28,11 @@ class User extends Model
 		return $this->belongsTo(Post::class,'postId');
 	}
 
+
+
+	public function task()
+	{
+		return $this->hasMany(Task::class,'userId');
+	}
+
 }

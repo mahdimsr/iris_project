@@ -8,7 +8,7 @@
 				<div class="card ">
 					<div class="header">
 						<h4 class="title set-font">جلسات</h4>
-						<p class="category set-font">لیست تمامی جلسات سازمان</p>
+						<p class="category set-font" style="margin-bottom: 15px">لیست تمامی جلسات سازمان</p>
 						<a class="btn-sm btn-info btn-fill set-font"
 						   href="{{action('Dashboard\\MeetingController@insertView')}}">ثبت جلسه</a>
 					</div>

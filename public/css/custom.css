@@ -68,6 +68,11 @@ th
 	text-align: right;
 }
 
+.col
+{
+	color: red;
+}
+
 .header
 {
 	font-family: IRANSans-web, serif;

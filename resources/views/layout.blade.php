@@ -36,7 +36,9 @@
 	<script src="{{asset('js/jquery.min.js')}}"></script>
 	<script src="{{asset('js/datepicker/persian.date.js')}}"></script>
 	<script src="{{asset('js/datepicker/persian.datepicker.js')}}"></script>
-
+	<script src="{{asset('js/custom.js')}}"></script>
+	<script src="{{asset('js/bootstrap-notify.js')}}"></script>
+	<script src="{{asset('js/demo.js')}}"></script>
 </head>
 <body>
 
@@ -242,7 +244,7 @@
 <script src="{{asset('js/chartist.min.js')}}"></script>
 
 <!--  Notifications Plugin    -->
-<script src="{{asset('js/bootstrap-notify.js')}}"></script>
+
 
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
@@ -251,7 +253,6 @@
 <script src="{{asset('js/light-bootstrap-dashboard.js?v=1.4.0')}}"></script>
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="{{asset('js/demo.js')}}"></script>
 
 
 

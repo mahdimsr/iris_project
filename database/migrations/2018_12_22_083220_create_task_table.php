@@ -18,11 +18,11 @@ class CreateTaskTable extends Migration
 		{
 			$table->increments('id');
 			$table->integer('userId');
-			$table->integer('meetingId');
+			$table->integer('meetingId')->nullable();
 			$table->enum('type', ['PERSONAL', 'MEETING']);
-			$table->string('title');
+			$table->string('title')->nullable();
 			$table->string('description')->nullable();
-			$table->string('date');
+			$table->timestamp('date')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

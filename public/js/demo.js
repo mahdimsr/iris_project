@@ -242,6 +242,23 @@ demo = {
         marker.setMap(map);
     },
 
+	alertUserDuplicateNotification: function(from, align,user){
+		color = Math.floor(1);
+
+		$.notify({
+			icon: "pe-7s-note",
+			message: 'برنامه زمانی <b>$(user)</b> در زمان تعیین شده پر است.',
+
+		},{
+			type: type[color],
+			timer: 4000,
+			placement: {
+				from: from,
+				align: align
+			}
+		});
+	}
+
 	showNotification: function(from, align){
     	color = Math.floor((Math.random() * 4) + 1);
 

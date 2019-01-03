@@ -38,22 +38,11 @@ Route::prefix('dashboard')->group(function()
 
 Route::get('test', function()
 {
-	$meeting = \App\Model\Meeting::find(2);
 
-	$date       = \Illuminate\Support\Carbon::create(2019, 1, 3, 23);
-	$customDate = \Illuminate\Support\Carbon::create(2019, 1, 5, 21);
+	$task = \App\Model\Task::find(1);
 
-	$targetDay = $customDate->min($date);
+	$date = \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s',$task->date);
+	$newDate = \Illuminate\Support\Carbon::create($date->year,$date->month,$date->day,5);
 
-	return $targetDay;
-
-	if ($targetDay->addDays(2)->eq($customDate))
-	{
-		return 'ok';
-	}
-	else
-	{
-		return 'not ok';
-	}
-
+	return $date->toDateTimeString();
 });
