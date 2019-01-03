@@ -18,7 +18,7 @@ class CreateAgendaTable extends Migration
             $table->integer('meetingId');
             $table->integer('userId');
             $table->string('title');
-            $table->integer('estimated_time'); //should be in minute
+            $table->integer('value_time')->nullable()->default(0); //should be in minute
             $table->timestamps();
             $table->softDeletes();
         });

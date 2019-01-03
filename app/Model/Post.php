@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Post
  * @package App
- * @property string title
+ * @property string englishTitle
+ * @property string persianTitle
  * @property int parentId
  *
  */

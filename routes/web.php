@@ -30,15 +30,30 @@ Route::prefix('dashboard')->group(function()
 		Route::get('/view', 'Dashboard\\MeetingController@View');
 		Route::get('/insertView', 'Dashboard\\MeetingController@insertView');
 		Route::post('/insert', 'Dashboard\\MeetingController@insert');
+		Route::get('/editView/{id}', 'Dashboard\\MeetingController@editView');
+		Route::get('/remove', 'Dashboard\\MeetingController@remove');
 	});
 
 });
 
 Route::get('test', function()
 {
-	$post = \App\Model\Post::query()->find('2');
-	$user = \App\Model\User::query()->find('1');
+	$meeting = \App\Model\Meeting::find(2);
 
-	return $user;
+	$date       = \Illuminate\Support\Carbon::create(2019, 1, 3, 23);
+	$customDate = \Illuminate\Support\Carbon::create(2019, 1, 5, 21);
+
+	$targetDay = $customDate->min($date);
+
+	return $targetDay;
+
+	if ($targetDay->addDays(2)->eq($customDate))
+	{
+		return 'ok';
+	}
+	else
+	{
+		return 'not ok';
+	}
 
 });

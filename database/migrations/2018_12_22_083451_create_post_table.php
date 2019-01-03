@@ -16,7 +16,8 @@ class CreatePostTable extends Migration
         Schema::create('post', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parentId')->nullable();
-            $table->string('title');
+            $table->string('englishTitle');
+            $table->string('persianTitle');
             $table->timestamps();
             $table->softDeletes();
         });

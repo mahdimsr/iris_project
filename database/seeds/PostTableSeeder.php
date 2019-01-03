@@ -15,26 +15,37 @@ class PostTableSeeder extends Seeder
 	{
 		DB::table('post')->insert([
 
-			'title' => 'مدیر',
+			//id 1
+			'persianTitle' => 'مدیر',
+			'englishTitle' => 'manager',
 
 		]);
 
 		DB::table('post')->insert([
 
-			'title' => 'دبیر جلسه',
+			//id 2
+
+			'persianTitle' => 'دبیر جلسه',
+			'englishTitle' => 'actuary',
 
 		]);
 
 		DB::table('post')->insert([
 
-			'title'    => 'منشی',
+			//id 3
+
+			'persianTitle'    => 'منشی',
+			'englishTitle'    => 'secretary',
 			'parentId' => '1'
 
 		]);
 
 		DB::table('post')->insert([
 
-			'title'    => 'کارمند',
+			//id 4
+
+			'persianTitle'    => 'کارمند',
+			'englishTitle'    => 'clerk',
 			'parentId' => '1'
 
 		]);
