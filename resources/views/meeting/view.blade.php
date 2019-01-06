@@ -30,11 +30,13 @@
 										<td class="set-font">{{$meeting->jalaliDate}}</td>
 										<td class="set-font">{{\App\Lib\Enum::meetingState($meeting->state)}}</td>
 										<td class="set-font">
+											<div class="row">
+												<a href="{{action('Dashboard\\MeetingController@editView',['id' => $meeting->id])}}"
+												   class="btn-sm btn-fill btn-info set-font">ویرایش</a>
 
-											<a href="{{action('Dashboard\\MeetingController@editView',['id' => $meeting->id])}}"
-											   class="btn-sm btn-fill btn-info set-font">ویرایش</a>
-											<a href="{{action('Dashboard\\MeetingController@remove',['id' => $meeting->id])}}" class="btn-sm btn-fill btn-danger set-font">حذف</a>
-
+												<a href="#"
+												   class="btn-sm btn-fill btn-danger set-font">حذف</a>
+											</div>
 										</td>
 									</tr>
 								@endforeach
@@ -52,5 +54,6 @@
 			</div>
 		</div>
 	</div>
+
 
 @stop

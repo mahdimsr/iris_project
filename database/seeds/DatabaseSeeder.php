@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
 			UserTableSeeder::class,
 			MeetingTableSeeder::class,
 			AgendaTableSeeder::class,
-			TaskTableSeeder::class
+			TaskTableSeeder::class,
+			EventTableSeeder::class
 
 		]);
 	}

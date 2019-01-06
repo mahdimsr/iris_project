@@ -31,7 +31,7 @@ Route::prefix('dashboard')->group(function()
 		Route::get('/insertView', 'Dashboard\\MeetingController@insertView');
 		Route::post('/insert', 'Dashboard\\MeetingController@insert');
 		Route::get('/editView/{id}', 'Dashboard\\MeetingController@editView');
-		Route::get('/remove', 'Dashboard\\MeetingController@remove');
+		Route::post('/remove', 'Dashboard\\MeetingController@remove');
 	});
 
 });
@@ -39,10 +39,7 @@ Route::prefix('dashboard')->group(function()
 Route::get('test', function()
 {
 
-	$task = \App\Model\Task::find(1);
+	$event = \App\Model\Event::all();
 
-	$date = \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s',$task->date);
-	$newDate = \Illuminate\Support\Carbon::create($date->year,$date->month,$date->day,5);
-
-	return $date->toDateTimeString();
+	return $event;
 });

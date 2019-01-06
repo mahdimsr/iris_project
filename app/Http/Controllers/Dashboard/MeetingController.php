@@ -60,7 +60,7 @@ class MeetingController extends Controller
 
 				if ($meetingDateEquals->eq($taskDateEquals))
 				{
-					return redirect()->back()->with('userDuplicate',$user->name);
+					return redirect()->back()->with('userDuplicate', $user->name);
 				}
 				else
 				{
@@ -91,20 +91,20 @@ class MeetingController extends Controller
 
 
 
-	public
-	function remove(Request $r)
+	public function remove(Request $r)
 	{
-		$meeting = Meeting::query()->find($r->input('id'));
+		/*$meeting = Meeting::query()->find($r->input('id'));
 
-		$meeting->delete();
+		$meeting->delete();*/
 
-		return redirect()->back();
+
+
+		return $r->input('name');
 	}
 
 
 
-	public
-	function editView($id)
+	public function editView($id)
 	{
 		$meeting = Meeting::with('agenda')->find($id);
 
