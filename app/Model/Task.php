@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Morilog\Jalali\Jalalian;
 
 
 /**
@@ -23,6 +24,12 @@ class Task extends Model
     protected $table = 'task';
     use SoftDeletes;
 
+	protected $appends = ['SolarDate'];
+
+	public function getsolarDateAttribute()
+	{
+		return Jalalian::fromDateTime($this->date)->toArray();
+	}
 
 	public function user()
 	{

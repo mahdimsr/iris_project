@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Lib\Enum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Morilog\Jalali\CalendarUtils;
@@ -24,7 +25,7 @@ class Meeting extends Model
 
 	use SoftDeletes;
 
-	protected $appends = ['jalaliDate'];
+	protected $appends = ['jalaliDate','persianState'];
 
 
 
@@ -36,15 +37,22 @@ class Meeting extends Model
 
 
 
+	public function getpersianStateAttribute()
+	{
+		return Enum::meetingState($this->state);
+	}
+
+
+
 	public function agenda()
 	{
-		return $this->hasMany(Agenda::class, 'meetingId');
+		return $this->hasMany(Agenda::class, 'meetingId')->with('user');
 	}
 
 
 
 	public function creator()
 	{
-		return $this->belongsTo(User::class, 'creatorId');
+		return $this->belongsTo(User::class, 'creatorId')->with('post');
 	}
 }

@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->get('/user', function(Request $request)
+{
+	return $request->user();
 });
 
 
-Route::get('/events','Api\\AndroidController@getEvent');
+Route::get('/events/{userId}', 'Api\\AndroidController@getEvent');
+
+Route::post('/getMeeting', 'Api\\AndroidController@getMeeting');
+Route::post('/getMeetingDetails', 'Api\\AndroidController@getMeetingDetails');
+
+Route::post('/setTask', 'Api\\AndroidController@setTask');

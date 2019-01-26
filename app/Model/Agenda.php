@@ -33,6 +33,6 @@ class Agenda extends Model
 
 	public function user()
 	{
-		return $this->belongsTo(User::class,'userId');
+		return $this->belongsTo(User::class,'userId')->with('post');
     }
 }

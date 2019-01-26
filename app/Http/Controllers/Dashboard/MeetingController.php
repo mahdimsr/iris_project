@@ -49,11 +49,15 @@ class MeetingController extends Controller
 		$meetingDate        = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $meetingDateConvert);
 		$meetingDateEquals  = Carbon::create($meetingDate->year, $meetingDate->month, $meetingDate->day, $meetingDate->hour);
 
-		for ($i = 0; $i < $r->input('user'); $i++)
+		return count($r->input('user'));
+
+		for ($i = 0; $i < count($r->input('user')); $i++)
 		{
 			$user = User::query()->find($r->input('user')[$i]);
+
 			foreach ($user->task as $task)
 			{
+
 				$taskDate = Carbon::createFromFormat('Y-m-d H:i:s', $task->date);
 
 				$taskDateEquals = Carbon::create($taskDate->year, $taskDate->month, $taskDate->day, $taskDate->hour);
@@ -82,6 +86,8 @@ class MeetingController extends Controller
 				}
 
 			}
+
+
 		}
 
 
@@ -90,24 +96,23 @@ class MeetingController extends Controller
 	}
 
 
+public
+function remove(Request $r)
+{
+	/*$meeting = Meeting::query()->find($r->input('id'));
 
-	public function remove(Request $r)
-	{
-		/*$meeting = Meeting::query()->find($r->input('id'));
-
-		$meeting->delete();*/
-
-
-
-		return $r->input('name');
-	}
+	$meeting->delete();*/
 
 
+	return $r->input('name');
+}
 
-	public function editView($id)
-	{
-		$meeting = Meeting::with('agenda')->find($id);
 
-		return $meeting;
-	}
+public
+function editView($id)
+{
+	$meeting = Meeting::with('agenda')->find($id);
+
+	return $meeting;
+}
 }
