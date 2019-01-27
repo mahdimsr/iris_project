@@ -47,10 +47,16 @@ class AndroidController extends Controller
 
 
 
-	public function acceptMeeting()
+	public function setMeetingState(Request $r)
 	{
+		$agenda = Agenda::query()->where('meetingId', '=', $r->input('meetingId'))
+			->where('userId', '=', $r->input('userId'))->update(['state' => $r->input('state')]);
+
+		
+		return 'SUCCESS';
 
 	}
+
 
 
 	public function setTask(Request $r)

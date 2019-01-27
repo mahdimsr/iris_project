@@ -25,5 +25,6 @@ Route::get('/events/{userId}', 'Api\\AndroidController@getEvent');
 
 Route::post('/getMeeting', 'Api\\AndroidController@getMeeting');
 Route::post('/getMeetingDetails', 'Api\\AndroidController@getMeetingDetails');
+Route::post('/setMeetingState','Api\\AndroidController@setMeetingState');
 
 Route::post('/setTask', 'Api\\AndroidController@setTask');

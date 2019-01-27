@@ -19,6 +19,8 @@ class CreateAgendaTable extends Migration
             $table->integer('userId');
             $table->string('title');
             $table->integer('value_time')->nullable()->default(0); //should be in minute
+			$table->enum('state',['NOTANSWERED','ACCEPTED','CANCELED'])->default('NOTANSWERED');
+			$table->string('cancelReason')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
