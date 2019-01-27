@@ -49,10 +49,28 @@ class AndroidController extends Controller
 
 	public function setMeetingState(Request $r)
 	{
-		$agenda = Agenda::query()->where('meetingId', '=', $r->input('meetingId'))
+		Agenda::query()->where('meetingId', '=', $r->input('meetingId'))
 			->where('userId', '=', $r->input('userId'))->update(['state' => $r->input('state')]);
 
-		
+
+		$meeting = Meeting::query()->find($r->input('meetingId'));
+
+		foreach ($meeting->agenda as $agenda)
+		{
+			if ($agenda->state == 'ACCEPTED')
+			{
+				$meeting->state = 'ON';
+			}
+			else if ($agenda->state == 'CANCELED')
+			{
+				$meeting->state = 'CANCEL';
+			}
+
+		}
+
+		$meeting->update();
+
+
 		return 'SUCCESS';
 
 	}
