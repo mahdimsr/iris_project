@@ -43,9 +43,9 @@
 	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).ttf") format("truetype");
 }
 
-body
+body , *
 {
-	font-family: IRANSans-web, serif;
+	font-family: IRANSans-web, serif !important;
 }
 
 .set-font
@@ -88,4 +88,23 @@ th
 {
 	text-align: right;
 	font-size: x-small;
+}
+
+
+.meeting-show>div{
+	text-align: center;
+	border-right: 1px solid #ddd;
+}
+
+.meeting-show>div.first{
+	border: none;
+}
+
+.meeting-show{
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 20px;
+}
+
+div.agenda , div.agenda th{
+	text-align: center;
 }
