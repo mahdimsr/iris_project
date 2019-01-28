@@ -31,7 +31,30 @@ class AndroidController extends Controller
 
 	public function getMeeting(Request $r)
 	{
-		$agenda = Agenda::query()->with('meeting')->where('userId', $r->input('userId'))->get();
+
+		$agenda = Agenda::query()->with([
+			'meeting' => function($query) use ($r)
+			{
+				if ($r->has('state'))
+				{
+					$query->where('state', '=', $r->input('state'));
+				}
+
+				if ($r->has('title'))
+				{
+					$query->where('title', 'like', '%' . $r->input('title') . '%');
+				}
+
+				if ($r->has('dateFrom') && $r->has('dateTo'))
+				{
+					$carbonDateFrom = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $r->input('dateFrom') . ' 00:00:00');
+					$carbonDateTo   = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $r->input('dateTo') . ' 00:00:00');
+
+					$query->where('date', '>=', $carbonDateFrom)->where('date', '<=', $carbonDateTo);
+				}
+			},
+		])->where('userId', $r->input('userId'))->get();
+
 
 		return $agenda;
 	}
@@ -42,7 +65,13 @@ class AndroidController extends Controller
 	{
 		$meeting = Meeting::with('agenda')->with('creator')->find($r->input('meetingId'));
 
-		return $meeting;
+		$agenda = Agenda::query()->where('meetingId', '=', $meeting->id)
+			->where('userId', '=', $r->input('userId'))->get();
+
+		$data['meeting'] = $meeting;
+		$data['agenda']  = $agenda;
+
+		return $data;
 	}
 
 
@@ -64,6 +93,15 @@ class AndroidController extends Controller
 			else if ($agenda->state == 'CANCELED')
 			{
 				$meeting->state = 'CANCEL';
+				$meeting->update();
+				return 'SUCCESS';
+			}
+			else
+			{
+				$meeting->state = 'SUSPEND';
+				$meeting->update();
+				return 'SUCCESS';
+
 			}
 
 		}

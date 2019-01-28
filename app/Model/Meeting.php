@@ -51,6 +51,11 @@ class Meeting extends Model
 
 
 
+	public function agendaUser($userId)
+	{
+		return $this->hasMany(Agenda::class, 'meetingId')->where('userId','=',$userId);
+	}
+
 	public function creator()
 	{
 		return $this->belongsTo(User::class, 'creatorId')->with('post');

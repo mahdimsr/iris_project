@@ -31,7 +31,7 @@ class Enum
 
 			case 'CANCEL';
 
-				return 'کنسل شده';
+				return 'لغو شده';
 
 				break;
 
