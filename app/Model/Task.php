@@ -60,4 +60,11 @@ class Task extends Model
 		return $this->belongsTo(User::class,'userId');
     }
 
+
+
+	public function meeting()
+	{
+		return $this->belongsTo(Meeting::class, 'meetingId');
+    }
+
 }

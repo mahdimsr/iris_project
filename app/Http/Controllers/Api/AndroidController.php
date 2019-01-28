@@ -19,7 +19,7 @@ class AndroidController extends Controller
 		$data = [];
 
 		$event = Event::all();
-		$task  = Task::query()->where('userId', '=', $userId)->get();
+		$task  = Task::query()->with('meeting')->where('userId', '=', $userId)->get();
 
 		$data['task']  = $task;
 		$data['event'] = $event;
