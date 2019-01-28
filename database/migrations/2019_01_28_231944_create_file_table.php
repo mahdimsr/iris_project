@@ -17,6 +17,8 @@ class CreateFileTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('path');
+            $table->enum('type',['FiNAL','DOC'])->nullable();
+            $table->boolean('is_approved')->default(false);
             $table->integer('meeting_id');
             $table->integer('uploader_id');//if 0 it mean system
             $table->timestamps();
