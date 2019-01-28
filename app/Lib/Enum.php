@@ -69,4 +69,29 @@ class Enum
 	}
 
 
+
+	public static function agendaState($state)
+	{
+		switch ($state)
+		{
+			case 'NOTANSWERED':
+
+				return 'پاسخ داده نشده';
+				break;
+
+			case 'ACCEPTED':
+
+				return 'تایید شده';
+				break;
+
+			case 'CANCELED':
+
+				return 'لغو شده';
+				break;
+		}
+
+		return 'not a verify state';
+	}
+
+
 }

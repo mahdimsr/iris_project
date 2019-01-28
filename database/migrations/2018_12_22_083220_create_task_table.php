@@ -18,7 +18,7 @@ class CreateTaskTable extends Migration
 		{
 			$table->increments('id');
 			$table->integer('userId');
-			$table->integer('meetingId')->nullable();
+			$table->integer('meetingId')->default(0);
 			$table->enum('type', ['PERSONAL', 'MEETING']);
 			$table->string('title')->nullable();
 			$table->string('description')->nullable();

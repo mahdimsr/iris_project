@@ -18,7 +18,7 @@ class TaskTableSeeder extends Seeder
 			'userId' => '3',
 			'type'   => 'PERSONAL',
 			'title' => 'کلاس دانشگاه',
-			'date' => '2019-01-5 09:00:00'
+			'date' => '2019-01-23 09:00:00'
 
 		]);
 	}
