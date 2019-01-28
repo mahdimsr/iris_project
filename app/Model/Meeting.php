@@ -10,13 +10,38 @@ use Morilog\Jalali\Jalalian;
 
 /**
  * Class Meeting
- * @package App\Model
  *
+ * @package App\Model
  * @property string title
  * @property string place
  * @property string state
  * @property int creatorId
- *
+ * @property int $id
+ * @property string $date
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Model\Agenda[] $agenda
+ * @property-read \App\Model\User $creator
+ * @property-read mixed $jalali_date
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Meeting onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereCreatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting wherePlace($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereState($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Model\Meeting whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Meeting withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Model\Meeting withoutTrashed()
+ * @mixin \Eloquent
  */
 class Meeting extends Model
 {
