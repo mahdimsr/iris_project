@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Agenda
- *
  * @package App\Model
  * @property integer userId
  * @property integer meetingId

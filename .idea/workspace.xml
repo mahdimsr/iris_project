@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="044bc685-5fa2-4313-8f9f-322e50f4083f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AndroidController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AndroidController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Task.php" afterPath="$PROJECT_DIR$/app/Model/Task.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/File.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Message.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2019_01_28_231937_create_message_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2019_01_28_231944_create_file_table.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2019_01_28_235158_create_user_file_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Agenda.php" afterPath="$PROJECT_DIR$/app/Model/Agenda.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.php" afterPath="$PROJECT_DIR$/server.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,7 +24,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AndroidController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
-              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+              <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding>
                 <element signature="e#543#1325#0#PHP" expanded="false" />
                 <element signature="e#1330#1668#0#PHP" expanded="false" />
@@ -40,11 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MeetingController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Agenda.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Model/Agenda.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MeetingController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MeetingController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -143,11 +158,11 @@
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Model/Meeting.php" />
         <option value="$PROJECT_DIR$/app/Lib/Enum.php" />
-        <option value="$PROJECT_DIR$/app/Model/Agenda.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/AndroidController.php" />
         <option value="$PROJECT_DIR$/app/Model/Task.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" />
+        <option value="$PROJECT_DIR$/app/Model/Agenda.php" />
       </list>
     </option>
   </component>
@@ -211,22 +226,7 @@
               <item name="iris_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="iris_project" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="iris_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iris_project" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="iris_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iris_project" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Http" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Api" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="iris_project" type="b2602c69:ProjectViewProjectNode" />
@@ -325,12 +325,12 @@
       <workItem from="1548585761643" duration="1242000" />
       <workItem from="1548597624736" duration="6259000" />
       <workItem from="1548671525432" duration="1669000" />
-      <workItem from="1548700616269" duration="10622000" />
+      <workItem from="1548700616269" duration="10748000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120276000" />
+    <option name="totallyTimeSpent" value="120402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -686,14 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Agenda.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Model/Task.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="725">
@@ -705,7 +697,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AndroidController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
-          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+          <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding>
             <element signature="e#543#1325#0#PHP" expanded="false" />
             <element signature="e#1330#1668#0#PHP" expanded="false" />
@@ -742,7 +734,15 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MeetingController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Agenda.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding />
         </state>
       </provider>
