@@ -45,6 +45,11 @@ class AndroidController extends Controller
 					$query->where('title', 'like', '%' . $r->input('title') . '%');
 				}
 
+				if ($r->has('number'))
+				{
+					$query->where('id', '=', $r->input('number'));
+				}
+
 				if ($r->has('dateFrom') && $r->has('dateTo'))
 				{
 					$carbonDateFrom = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $r->input('dateFrom') . ' 00:00:00');
