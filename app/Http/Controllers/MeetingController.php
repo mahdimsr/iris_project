@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Lib\Convert;
 use App\Model\Agenda;
+use App\Model\File;
 use App\Model\Meeting;
 use App\Model\Task;
 use App\Model\User;
+use App\Model\Task;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Morilog\Jalali\CalendarUtils;
-use App\Model\File;
-use DB;
+
 class MeetingController extends Controller {
     public function view() {
         $meetings = Meeting::all();
@@ -41,41 +44,97 @@ class MeetingController extends Controller {
             $Agendas[$i]['title'] = $r->input('title')[$i];
             $Agendas[$i]['valueTime'] = intval(Convert::convertNumber($r->input('valueTime')[$i]));
         }
+        if (count($Agendas) <= 0) {
+            return redirect(route('meetings'))->with('errors', 'حداقل یک کاربر اضافه کنید.');
+        }
         $meetingDateConvert = Convert::convertNumber($r->input('meetingDate'));
         $meetingDate = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $meetingDateConvert);
         $meetingDateEquals = Carbon::create($meetingDate->year, $meetingDate->month, $meetingDate->day, $meetingDate->hour);
         for ($i = 0; $i < count($r->input('user')); $i++) {
             $user = User::query()->find($r->input('user')[$i]);
-            foreach ($user->task as $task) {
-                $taskDate = Carbon::createFromFormat('Y-m-d H:i:s', $task->date);
+            if(count($user->task) > 0){
+                foreach ($user->task as $task) {
+                    $taskDate = Carbon::createFromFormat('Y-m-d H:i:s', $task->date);
 
-                $taskDateEquals = Carbon::create($taskDate->year, $taskDate->month, $taskDate->day, $taskDate->hour);
+                    $taskDateEquals = Carbon::create($taskDate->year, $taskDate->month, $taskDate->day, $taskDate->hour);
 
-                if ($meetingDateEquals->eq($taskDateEquals)) {
-                    return redirect()->back()->with('userDuplicate', $user->name);
-                } else {
-                    $meeting->title = $r->input('meetingTitle');
-                    $meeting->place = $r->input('meetingPlace');
-                    $meeting->creatorId = $current_user;
-                    $meeting->date = $meetingDate;
+                    if ($meetingDateEquals->eq($taskDateEquals)) {
 
-                    $meeting->save();
-                    foreach ($Agendas as $agenda_item) {
-                        $agenda = new Agenda();
+                        return redirect()->back()->with('userDuplicate', $user->name);
+                    } else {
 
-                        $agenda->meetingId = $meeting->id;
-                        $agenda->userId = $agenda_item['user'];
-                        $agenda->title = $agenda_item['title'];
-                        $agenda->value_time = $agenda_item['valueTime'];
+                        $meeting->title = $r->input('meetingTitle');
+                        $meeting->place = $r->input('meetingPlace');
+                        $meeting->creatorId = $current_user;
+                        $meeting->date = $meetingDate;
 
-                        $agenda->save();
+                        $meeting->save();
+                        foreach ($Agendas as $agenda_item) {
+                            $agenda = new Agenda();
+
+                            $agenda->meetingId = $meeting->id;
+                            $agenda->userId = $agenda_item['user'];
+                            $agenda->title = $agenda_item['title'];
+                            $agenda->value_time = $agenda_item['valueTime'];
+
+                            $agenda->save();
+
+                            $title       = 'جلسه ' . $meeting->title;
+                            $description = 'جلسه ' . $meeting->place . 'برگزار می‌شود.';
+                            $userId      = $agenda->userId;
+                            $carbonDate  = $meetingDate;
+                            $task = new Task();
+
+                            $task->userId      = $userId;
+                            $task->type        = 'PERSONAL';
+                            $task->title       = $title;
+                            $task->description = $description;
+                            $task->date        = $carbonDate;
+
+                            $task->save();
+                        }
+
                     }
 
                 }
 
-            }
-        }
+            }else{
+                $meeting->title = $r->input('meetingTitle');
+                $meeting->place = $r->input('meetingPlace');
+                $meeting->creatorId = $current_user;
+                $meeting->date = $meetingDate;
 
+                $meeting->save();
+                foreach ($Agendas as $agenda_item) {
+                    $agenda = new Agenda();
+
+                    $agenda->meetingId = $meeting->id;
+                    $agenda->userId = $agenda_item['user'];
+                    $agenda->title = $agenda_item['title'];
+                    $agenda->value_time = $agenda_item['valueTime'];
+
+                    $agenda->save();
+
+                    $title       = $meeting->title;
+                    $description = 'جلسه در ' . $meeting->place . ' برگزار می‌شود.';
+                    $userId      = $agenda->userId;
+                    $carbonDate  = $meetingDate;
+
+                    $task = new Task();
+
+                    $task->userId      = $userId;
+                    $task->type        = 'PERSONAL';
+                    $task->title       = $title;
+                    $task->description = $description;
+                    $task->meetingId   = $meeting->id;
+                    $task->type        = 'MEETING';
+                    $task->date        = $carbonDate;
+
+                    $task->save();
+                }
+            }
+
+        }
         return redirect(route('meetings'))->with('success', 'جلسه با موفقیت اضافه شد.');
 
     }
@@ -134,21 +193,23 @@ class MeetingController extends Controller {
 
     function Show(Meeting $Meeting) {
         $FilesFinal = DB::table('file')->where([
-            ['meeting_id' , $Meeting->id],
-            ['type' , 'FINAL'],
-        ])->get();
+            ['meeting_id', $Meeting->id],
+            ['type', 'FINAL'],
+        ])->get()
+        ;
 
         $FilesDoc = DB::table('file')->where([
-            ['meeting_id' , $Meeting->id],
-            ['type' , 'DOC'],
-        ])->get();
+            ['meeting_id', $Meeting->id],
+            ['type', 'DOC'],
+        ])->get()
+        ;
 
         $Agendas = $Meeting->agenda;
         return view('meeting.show', [
             'Meeting' => $Meeting,
             'Agendas' => $Agendas,
-            'FilesFinal'   => $FilesFinal,
-            'FilesDoc'   => $FilesDoc,
+            'FilesFinal' => $FilesFinal,
+            'FilesDoc' => $FilesDoc,
         ]);
     }
 
@@ -157,9 +218,9 @@ class MeetingController extends Controller {
         $file = $r->docfile;
         $file_name = $r->input('doc-name');
         $file_type = $r->input('doc_final');
-        if ($file_type == 'true'){
+        if ($file_type == 'true') {
             $file_type = "FINAL";
-        }else{
+        } else {
             $file_type = "DOC";
         }
         $current_user = auth()->user()->id;
@@ -174,6 +235,6 @@ class MeetingController extends Controller {
         $File->meeting_id = $Meeting->id;
         $File->uploader_id = $current_user;
         $File->save();
-        return redirect()->back()->with('status' , 'فایل با موفقیت آپلود شد');
+        return redirect()->back()->with('status', 'فایل با موفقیت آپلود شد');
     }
 }

@@ -13,37 +13,37 @@ class Enum
 {
 
 	//meeting state enum control
-	public static function meetingState($state)
-	{
-		switch ($state)
-		{
-			case 'SUSPEND':
+    public static function meetingState($state)
+    {
+        switch ($state)
+        {
+            case 'SUSPEND':
 
-				return 'معلق';
+                return 'معلق';
 
-				break;
+                break;
 
-			case 'ON';
+            case 'ON';
 
-				return 'برقرار';
+                return 'برقرار';
 
-				break;
+                break;
 
-			case 'CANCEL';
+            case 'CANCEL';
 
 				return 'لغو شده';
 
-				break;
+                break;
 
-			case 'FINISHED';
+            case 'FINISHED';
 
-				return 'به اتمام رسیده';
+                return 'به اتمام رسیده';
 
-				break;
-		}
+                break;
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 
 

@@ -100,14 +100,49 @@
                                             <tr>
                                                 <th>نام مستند</th>
                                                 <th>لینک دانلود</th>
+                                                <th>وضعیت</th>
+                                                <th>عملیات</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($FilesFinal as $File)
+                                                <?php
+                                                $UserFileStatus = DB::table('user_file')->where([
+                                                    ['user_id', auth()->user()->id],
+                                                    ['file_id', $File->id],
+                                                ])->first();
+                                                ?>
                                                 <tr>
                                                     <td>{{$File->name}}</td>
                                                     <td><a target="_blank"
                                                            href="{{route('download-file' , $File->id)}}">لینک دانلود</a>
+                                                    </td>
+                                                    <td>
+                                                        @if ($File->is_approved == true)
+                                                            تائید شده
+                                                            @if ($UserFileStatus and $UserFileStatus->is_approved == true)
+                                                                (شما تائید کرده اید)
+                                                            @else
+                                                                (شما تائید نکرده اید)
+                                                            @endif
+                                                        @else
+                                                            تائید نشده
+                                                            @if ($UserFileStatus and $UserFileStatus->is_approved == true)
+                                                                (شما تائید کرده اید)
+                                                            @else
+                                                                (شما تائید نکرده اید)
+                                                            @endif
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($UserFileStatus and $UserFileStatus->is_approved == true)
+                                                            <a href="{{route('reject-file' , $File->id)}}"
+                                                               class="btn-sm btn-fill btn-danger set-font">رد کردن</a>
+                                                        @else
+                                                            <a href="{{route('accept-file' , $File->id)}}"
+                                                               class="btn-sm btn-fill btn-info set-font">تائید
+                                                                کردن</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
