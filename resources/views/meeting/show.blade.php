@@ -80,7 +80,7 @@
                                                     <td>{{$File->name}}</td>
                                                     <td><a target="_blank"
                                                            {{--href="{{route('download-file' , $File->id)}}">لینک دانلود</a>--}}
-                                                           href="{{env('APP_IP').$File->path}}">{{asset($File->path)}}</a>
+                                                           href="{{env('APP_IP').$File->path}}">لینک دانلود</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
