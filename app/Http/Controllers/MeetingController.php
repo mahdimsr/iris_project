@@ -6,8 +6,8 @@ use App\Lib\Convert;
 use App\Model\Agenda;
 use App\Model\File;
 use App\Model\Meeting;
-use App\Model\User;
 use App\Model\Task;
+use App\Model\User;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -16,7 +16,17 @@ use Morilog\Jalali\CalendarUtils;
 
 class MeetingController extends Controller {
     public function view() {
-        $meetings = Meeting::all();
+        $current_user = auth()->user()->id;
+        $PostID = auth()->user()->postId;
+        if ($PostID == 3) {
+            $meetings = Meeting::paginate(15);
+        } else {
+            $meetings = Meeting::paginate(15);
+            $agenda = Agenda::query()->with('meeting')->where('userId', $current_user)->get();
+
+        }
+        $meetings = Meeting::paginate(15);
+
         return view('meeting.view')->with('meetings', $meetings);
     }
 
@@ -38,27 +48,25 @@ class MeetingController extends Controller {
         $current_user = auth()->user()->id;
         $meeting = new Meeting();
         $Agendas = [];
+        if ($r->input('user') == null) {
+            return redirect()->back()->with('agenda_error', 'حداقل یک کاربر اضافه کنید.');
+        }
         for ($i = 0; $i < count($r->input('user')); $i++) {
             $Agendas[$i]['user'] = $r->input('user')[$i];
             $Agendas[$i]['title'] = $r->input('title')[$i];
             $Agendas[$i]['valueTime'] = intval(Convert::convertNumber($r->input('valueTime')[$i]));
-        }
-        if (count($Agendas) <= 0) {
-            return redirect(route('meetings'))->with('errors', 'حداقل یک کاربر اضافه کنید.');
         }
         $meetingDateConvert = Convert::convertNumber($r->input('meetingDate'));
         $meetingDate = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $meetingDateConvert);
         $meetingDateEquals = Carbon::create($meetingDate->year, $meetingDate->month, $meetingDate->day, $meetingDate->hour);
         for ($i = 0; $i < count($r->input('user')); $i++) {
             $user = User::query()->find($r->input('user')[$i]);
-            if(count($user->task) > 0){
+            if (count($user->task) > 0) {
                 foreach ($user->task as $task) {
                     $taskDate = Carbon::createFromFormat('Y-m-d H:i:s', $task->date);
 
                     $taskDateEquals = Carbon::create($taskDate->year, $taskDate->month, $taskDate->day, $taskDate->hour);
-
                     if ($meetingDateEquals->eq($taskDateEquals)) {
-
                         return redirect()->back()->with('userDuplicate', $user->name);
                     } else {
 
@@ -78,17 +86,17 @@ class MeetingController extends Controller {
 
                             $agenda->save();
 
-                            $title       = 'جلسه ' . $meeting->title;
+                            $title = 'جلسه ' . $meeting->title;
                             $description = 'جلسه ' . $meeting->place . 'برگزار می‌شود.';
-                            $userId      = $agenda->userId;
-                            $carbonDate  = $meetingDate;
+                            $userId = $agenda->userId;
+                            $carbonDate = $meetingDate;
                             $task = new Task();
 
-                            $task->userId      = $userId;
-                            $task->type        = 'PERSONAL';
-                            $task->title       = $title;
+                            $task->userId = $userId;
+                            $task->type = 'PERSONAL';
+                            $task->title = $title;
                             $task->description = $description;
-                            $task->date        = $carbonDate;
+                            $task->date = $carbonDate;
 
                             $task->save();
                         }
@@ -97,7 +105,7 @@ class MeetingController extends Controller {
 
                 }
 
-            }else{
+            } else {
                 $meeting->title = $r->input('meetingTitle');
                 $meeting->place = $r->input('meetingPlace');
                 $meeting->creatorId = $current_user;
@@ -114,20 +122,19 @@ class MeetingController extends Controller {
 
                     $agenda->save();
 
-                    $title       = $meeting->title;
+                    $title = $meeting->title;
                     $description = 'جلسه در ' . $meeting->place . ' برگزار می‌شود.';
-                    $userId      = $agenda->userId;
-                    $carbonDate  = $meetingDate;
+                    $userId = $agenda->userId;
+                    $carbonDate = $meetingDate;
 
                     $task = new Task();
 
-                    $task->userId      = $userId;
-                    $task->type        = 'PERSONAL';
-                    $task->title       = $title;
+                    $task->userId = $agenda_item['user'];
+                    $task->title = $title;
                     $task->description = $description;
-                    $task->meetingId   = $meeting->id;
-                    $task->type        = 'MEETING';
-                    $task->date        = $carbonDate;
+                    $task->meetingId = $meeting->id;
+                    $task->type = 'MEETING';
+                    $task->date = $carbonDate;
 
                     $task->save();
                 }
@@ -140,7 +147,10 @@ class MeetingController extends Controller {
 
 
     public function remove(Meeting $Meeting) {
-
+        $Agendas = $Meeting->agenda;
+        foreach ($Agendas as $Agenda) {
+            $Agenda->delete();
+        }
         $Meeting->delete();
 
         return redirect()->back()->with('success', 'جلسه با موفقیت حذف شد.');
@@ -158,35 +168,116 @@ class MeetingController extends Controller {
     }
 
     public function edit(Request $r) {
+        $current_user = auth()->user()->id;
         $meeting = Meeting::find($r->input('meeting_id'));
         $Agendas = [];
+        if ($r->input('user') == null) {
+            return redirect()->back()->with('agenda_error', 'حداقل یک کاربر اضافه کنید.');
+        }
+        for ($i = 0; $i < count($r->input('user')); $i++) {
+            $Agendas[$i]['user'] = $r->input('user')[$i];
+            $Agendas[$i]['title'] = $r->input('title')[$i];
+            $Agendas[$i]['valueTime'] = intval(Convert::convertNumber($r->input('time')[$i]));
+        }
+
+
+        foreach ($meeting->agenda as $item) {
+            $item->delete();
+        }
+        DB::table('task')->where('meetingId' , $r->input('meeting_id'))->delete();
         $meetingDateConvert = Convert::convertNumber($r->input('meetingDate'));
         $meetingDate = CalendarUtils::createCarbonFromFormat('Y/m/d H:i:s', $meetingDateConvert);
-        if ($r->input('user') != null) {
-            for ($i = 0; $i < count($r->input('user')); $i++) {
-                $Agendas[$i]['user'] = $r->input('user')[$i];
-                $Agendas[$i]['title'] = $r->input('title')[$i];
-                $Agendas[$i]['valueTime'] = $r->input('time')[$i];
+        $meetingDateEquals = Carbon::create($meetingDate->year, $meetingDate->month, $meetingDate->day, $meetingDate->hour);
+        $user_request = array_unique($r->input('user'));
+        $user_request = array_combine(range(0, count($user_request) - 1), array_values($user_request));
+        for ($i = 0; $i < count($user_request) - 1; $i++) {
+            $UserIsFree = false;
+            $user = User::query()->find((int)$user_request[$i]);
+            if (count($user->task) > 0) {
+                foreach ($user->task as $task) {
+                    $taskDate = Carbon::createFromFormat('Y-m-d H:i:s', $task->date);
+                    $taskDateEquals = Carbon::create($taskDate->year, $taskDate->month, $taskDate->day, $taskDate->hour);
+                    if ($meetingDateEquals->eq($taskDateEquals)) {
+                        return redirect(route('meetings-edit' , $r->input('meeting_id')))->with('userDuplicate', $user->name);
+                    } else {
+                        $UserIsFree = true;
+                    }
+                }
+
+            } else {
+                $UserIsFree = false;
+                $meeting->title = $r->input('meetingTitle');
+                $meeting->place = $r->input('meetingPlace');
+                $meeting->creatorId = $current_user;
+                $meeting->date = $meetingDate;
+
+                $meeting->save();
+                foreach ($Agendas as $agenda_item) {
+                    $agenda = new Agenda();
+
+                    $agenda->meetingId = $meeting->id;
+                    $agenda->userId = $agenda_item['user'];
+                    $agenda->title = $agenda_item['title'];
+                    $agenda->value_time = $agenda_item['valueTime'];
+
+                    $agenda->save();
+
+                    $title = $meeting->title;
+                    $description = 'جلسه در ' . $meeting->place . ' برگزار می‌شود.';
+                    $userId = $agenda->userId;
+                    $carbonDate = $meetingDate;
+
+                    $task = new Task();
+
+                    $task->userId = $userId;
+                    $task->type = 'PERSONAL';
+                    $task->title = $title;
+                    $task->description = $description;
+                    $task->meetingId = $meeting->id;
+                    $task->type = 'MEETING';
+                    $task->date = $carbonDate;
+
+                    $task->save();
+                }
             }
-        }
-        $meeting->title = $r->input('meetingTitle');
-        $meeting->place = $r->input('meetingPlace');
-        $meeting->date = $meetingDate;
-        $meeting->save();
-        foreach ($meeting->agenda as $item) {
-            $agenda = Agenda::find($item->id);
-            $agenda->delete();
-        }
-        foreach ($Agendas as $agenda_item) {
-            $agenda = new Agenda();
+            if ($UserIsFree){
+                $meeting->title = $r->input('meetingTitle');
+                $meeting->place = $r->input('meetingPlace');
+                $meeting->creatorId = $current_user;
+                $meeting->date = $meetingDate;
 
-            $agenda->meetingId = $meeting->id;
-            $agenda->userId = $agenda_item['user'];
-            $agenda->title = $agenda_item['title'];
-            $agenda->value_time = $agenda_item['valueTime'];
+                $meeting->save();
+                foreach ($Agendas as $agenda_item) {
+                    $agenda = new Agenda();
 
-            $agenda->save();
+                    $agenda->meetingId = $meeting->id;
+                    $agenda->userId = $agenda_item['user'];
+                    $agenda->title = $agenda_item['title'];
+                    $agenda->value_time = $agenda_item['valueTime'];
+
+                    $agenda->save();
+
+                    $title = $meeting->title;
+                    $description = 'جلسه در ' . $meeting->place . ' برگزار می‌شود.';
+                    $userId = $agenda->userId;
+                    $carbonDate = $meetingDate;
+
+                    $task = new Task();
+
+                    $task->userId = $userId;
+                    $task->type = 'PERSONAL';
+                    $task->title = $title;
+                    $task->description = $description;
+                    $task->meetingId = $meeting->id;
+                    $task->type = 'MEETING';
+                    $task->date = $carbonDate;
+
+                    $task->save();
+                }
+            }
+
         }
+
         return redirect()->back()->with('success', 'جلسه با موفقیت ویرایش شد.');
     }
 
