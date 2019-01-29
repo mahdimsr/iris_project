@@ -67,10 +67,10 @@ class UserTableSeeder extends Seeder
 
         DB::table('user')->insert([
 
-            'name'       => 'امیر پیرمرادیان',
+            'name'       => 'علی قاسمی',
             'postId'     => '1',
             'genre'      => 'MALE',
-            'email'      => 'amirpirmoradian94@gmail.com',
+            'email'      => 'qwerty3@gmail.com',
             'password'   => bcrypt('qwerty'),
             'phone'      => '09134744677',
             'created_at' => \Carbon\Carbon::now(),

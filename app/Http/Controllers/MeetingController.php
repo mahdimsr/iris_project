@@ -8,7 +8,6 @@ use App\Model\File;
 use App\Model\Meeting;
 use App\Model\Task;
 use App\Model\User;
-use App\Model\Task;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
