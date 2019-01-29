@@ -78,7 +78,7 @@ th {
     border: none;
 }
 
-.meeting-show {
+.meeting-show , .agenda-lists{
     border-bottom: 1px solid #ddd;
     padding-bottom: 20px;
 }
@@ -99,3 +99,17 @@ div.agenda, div.agenda th {
 .login-form .remember-text {
     margin-right: 17px;
 }
+
+.sidebar .nav p{
+    margin-right: 0;
+}
+
+.container{
+    direction: rtl;
+}
+
+.agenda table{
+    width: 90%;
+    margin: 0 auto;
+}
+

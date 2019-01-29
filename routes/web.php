@@ -36,6 +36,7 @@ Route::get('/', function () {
 });
 Route::middleware('auth')->group(function () {
     Route::redirect('/home', 'dashboard/view');
+    Route::redirect('/', 'dashboard/view');
 
     // Registration Routes...
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -54,10 +55,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/editView/{Meeting}', 'MeetingController@editView')->name('meetings-edit');
             Route::post('/edit', 'MeetingController@edit')->name('meetings-edit-post');
             Route::get('/remove/{Meeting}', 'MeetingController@remove')->name('meetings-remove');
+            Route::post('/document/{Meeting}', 'MeetingController@document')->name('meetings-document');
         })
         ;
 
         Route::get('statics', 'StaticsController@index')->name('statics');
+
+        Route::get('/download/{File}', 'FileController@getDownload')->name('download-file');
 
     })
     ;

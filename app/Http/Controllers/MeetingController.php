@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Lib\Convert;
 use App\Model\Agenda;
 use App\Model\Meeting;
@@ -10,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Morilog\Jalali\CalendarUtils;
-
-
+use App\Model\File;
+use DB;
 class MeetingController extends Controller {
     public function view() {
         $meetings = Meeting::all();
@@ -33,7 +32,7 @@ class MeetingController extends Controller {
             'meetingDate'  => 'required',
 
         ]);*/
-
+        $current_user = auth()->user()->id;
         $meeting = new Meeting();
         $Agendas = [];
         for ($i = 0; $i < count($r->input('user')); $i++) {
@@ -56,7 +55,7 @@ class MeetingController extends Controller {
                 } else {
                     $meeting->title = $r->input('meetingTitle');
                     $meeting->place = $r->input('meetingPlace');
-                    $meeting->creatorId = 1;
+                    $meeting->creatorId = $current_user;
                     $meeting->date = $meetingDate;
 
                     $meeting->save();
@@ -113,7 +112,6 @@ class MeetingController extends Controller {
         }
         $meeting->title = $r->input('meetingTitle');
         $meeting->place = $r->input('meetingPlace');
-        $meeting->creatorId = 1;//todo After Creating User Controller
         $meeting->date = $meetingDate;
         $meeting->save();
         foreach ($meeting->agenda as $item) {
@@ -133,11 +131,48 @@ class MeetingController extends Controller {
         return redirect()->back()->with('success', 'جلسه با موفقیت ویرایش شد.');
     }
 
-    function Show(Meeting $Meeting){
+    function Show(Meeting $Meeting) {
+        $FilesFinal = DB::table('file')->where([
+            ['meeting_id' , $Meeting->id],
+            ['type' , 'FINAL'],
+        ])->get();
+
+        $FilesDoc = DB::table('file')->where([
+            ['meeting_id' , $Meeting->id],
+            ['type' , 'DOC'],
+        ])->get();
+
         $Agendas = $Meeting->agenda;
         return view('meeting.show', [
             'Meeting' => $Meeting,
-            'Agendas' => $Agendas
+            'Agendas' => $Agendas,
+            'FilesFinal'   => $FilesFinal,
+            'FilesDoc'   => $FilesDoc,
         ]);
+    }
+
+    function Document(Meeting $Meeting, Request $r) {
+        $filepath = public_path() . '/files';
+        $file = $r->docfile;
+        $file_name = $r->input('doc-name');
+        $file_type = $r->input('doc_final');
+        if ($file_type == 'true'){
+            $file_type = "FINAL";
+        }else{
+            $file_type = "DOC";
+        }
+        $current_user = auth()->user()->id;
+
+        $file_url = '/files/' . time() . '.' . $file->getClientOriginalExtension();
+        $file->move($filepath, time() . '.' . $file->getClientOriginalExtension());
+        $File = new File();
+        $File->name = $file_name;
+        $File->path = $file_url;
+        $File->ext = $file->getClientOriginalExtension();
+        $File->type = $file_type;
+        $File->meeting_id = $Meeting->id;
+        $File->uploader_id = $current_user;
+        $File->save();
+        return redirect()->back()->with('status' , 'فایل با موفقیت آپلود شد');
     }
 }
