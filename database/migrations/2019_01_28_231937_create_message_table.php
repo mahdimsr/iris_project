@@ -20,6 +20,7 @@ class CreateMessageTable extends Migration
             $table->integer('sender_id');//if 0 it mean system
             $table->text('receiver_id');//if 0 it mean all
             $table->boolean('is_read');//if 0 it mean all
+            $table->boolean('is_news')->default(false);//if 0 it mean all
             $table->timestamps();
             $table->softDeletes();
 

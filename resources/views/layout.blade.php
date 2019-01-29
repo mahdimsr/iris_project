@@ -82,8 +82,16 @@
 						<p>پیام های دریافتی</p>
 					</a>
 				</li>
+				
+				@if (auth()->user()->postId == 3)
+					<li>
+						<a href="{{route('news-send')}}">
+							<p>ارسال خبر</p>
+						</a>
+					</li>
+				@endif
 				<li>
-					<a href="typography.html">
+					<a href="{{route('news-list')}}">
 						<p>اخبار</p>
 					</a>
 				</li>

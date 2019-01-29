@@ -22,7 +22,7 @@
                                 <thead>
                                     <th scope="col">عنوان</th>
                                     <th scope="col">متن</th>
-                                    <th scope="col">دریافت کننده</th>
+                                    <th scope="col">عملیات</th>
                                 </thead>
                                 <tbody>
                                     @foreach($messages as $message)
