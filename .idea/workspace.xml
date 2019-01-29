@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="044bc685-5fa2-4313-8f9f-322e50f4083f" name="Default" comment="update git ignore">
-      <change afterPath="$PROJECT_DIR$/resources/views/static.blade.php" afterDir="false" />
+    <list default="true" id="044bc685-5fa2-4313-8f9f-322e50f4083f" name="Default" comment="Push EveryThing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/StaticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/StaticsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
     </list>
     <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,9 +20,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/static.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="162">
+              <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
               <folding>
+                <element signature="e#556#579#0#HTML" expanded="true" />
                 <element signature="e#1164#1184#0#HTML" expanded="true" />
               </folding>
             </state>
@@ -33,10 +31,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+            <state relative-caret-position="1074">
+              <caret line="104" column="32" lean-forward="true" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -71,7 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;script</find>
       <find>asset</find>
       <find>right</find>
       <find>sidebar</find>
@@ -101,6 +107,7 @@
       <find>Pro_id</find>
       <find>select2-search__field</find>
       <find>Please en</find>
+      <find>حساب</find>
     </findStrings>
     <replaceStrings>
       <replace>asset('public/</replace>
@@ -160,7 +167,6 @@
         <option value="$PROJECT_DIR$/resources/views/message/receiveList.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/message/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/news/send.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_01_28_231937_create_message_table.php" />
         <option value="$PROJECT_DIR$/resources/views/message/sendList.blade.php" />
@@ -169,8 +175,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/NewsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MeetingController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StaticsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/static.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/static.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
       </list>
     </option>
   </component>
@@ -464,7 +471,7 @@
       <workItem from="1548718153825" duration="3688000" />
       <workItem from="1548721858531" duration="1613000" />
       <workItem from="1548723958865" duration="14290000" />
-      <workItem from="1548738384698" duration="18825000" />
+      <workItem from="1548738384698" duration="19117000" />
     </task>
     <task id="LOCAL-00001" summary="Create File Table and migration">
       <created>1548719001697</created>
@@ -613,11 +620,25 @@
       <option name="project" value="LOCAL" />
       <updated>1548757257763</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Push EveryThing">
+      <created>1548758992070</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1548758992070</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Push EveryThing">
+      <created>1548759056081</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1548759056081</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148886000" />
+    <option name="totallyTimeSpent" value="149178000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,7 +653,7 @@
     <frame x="0" y="26" width="1366" height="714" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32954547" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32954547" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -645,7 +666,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32881355" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.84745765" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.33728814" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.33728814" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32881355" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" weight="0.32881355" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -718,7 +739,8 @@
     <MESSAGE value="fix meeting task check" />
     <MESSAGE value="add Message functions" />
     <MESSAGE value="Create News and Message Functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create News and Message Functions" />
+    <MESSAGE value="Push EveryThing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Push EveryThing" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
@@ -1049,13 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-370">
-          <caret line="87" column="43" lean-forward="true" selection-end-line="208" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_01_28_231937_create_message_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1077,20 +1092,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1074">
+          <caret line="104" column="32" lean-forward="true" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/static.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="162">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
           <folding>
+            <element signature="e#556#579#0#HTML" expanded="true" />
             <element signature="e#1164#1184#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="100" column="40" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="40" />
+        <state relative-caret-position="63">
+          <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
         </state>
       </provider>
     </entry>
