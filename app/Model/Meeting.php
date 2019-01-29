@@ -67,10 +67,6 @@ class Meeting extends Model {
     }
 
 
-    public function creator() {
-        return $this->belongsTo(User::class, 'creatorId')->with('post');
-    }
-
     public function files()
 	{
 		return $this->hasMany(File::class, 'meeting_id');
@@ -82,4 +78,8 @@ class Meeting extends Model {
 		return $this->hasMany(Agenda::class, 'meetingId')->where('userId','=',$userId);
 	}
 
+	public function creator()
+	{
+		return $this->belongsTo(User::class, 'creatorId')->with('post');
+	}
 }
