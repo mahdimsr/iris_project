@@ -96,11 +96,14 @@
 					</a>
 				</li>
 
-				<li>
-					<a href="{{route('register')}}">
-						<p>ثبت نام کاربر جدید</p>
-					</a>
-				</li>
+				@if (auth()->user()->postId == 3)
+					<li>
+						<a href="{{route('register')}}">
+							<p>ثبت نام کاربر جدید</p>
+						</a>
+					</li>
+				@endif
+
 
 			</ul>
 		</div>
