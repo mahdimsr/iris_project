@@ -22,7 +22,6 @@ class MeetingController extends Controller {
         } else {
             $meetings = Meeting::paginate(15);
             $agenda = Agenda::query()->with('meeting')->where('userId', $current_user)->get();
-
         }
         $meetings = Meeting::paginate(15);
 

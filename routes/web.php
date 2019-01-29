@@ -81,6 +81,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/send-list', 'MessageController@sendListView')->name('message-send-list');
             Route::get('/show/{Message}', 'MessageController@show')->name('message-show');
         });
+
+        Route::prefix('news')->group(function () {
+            Route::get('/send', 'NewsController@sendView')->name('news-send');
+            Route::post('/send', 'NewsController@send')->name('news-send-post');
+            Route::get('/list', 'NewsController@list')->name('news-list');
+            Route::get('/show/{Message}', 'NewsController@show')->name('news-show');
+        });
+
+
         Route::get('statics', 'StaticsController@index')->name('statics');
 
         Route::get('/download/{File}', 'FileController@getDownload')->name('download-file');
@@ -88,8 +97,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/file/accept/{File}', 'FileController@accept')->name('accept-file');
         Route::get('/file/reject/{File}', 'FileController@reject')->name('reject-file');
 
-    })
-    ;
+    });
+    Route::redirect('dashboard/view' , 'statics');
 })
 ;
 
