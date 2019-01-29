@@ -31,13 +31,12 @@
 	<!--     Fonts and icons     -->
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{asset('css/pe-icon-7-stroke.css')}}" rel="stylesheet"/>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-	<script src="{{asset('js/jquery.min.js')}}"></script>
 	<script src="{{asset('js/datepicker/persian.date.js')}}"></script>
 	<script src="{{asset('js/datepicker/persian.datepicker.js')}}"></script>
 	<script src="{{asset('js/custom.js')}}"></script>
 	<script src="{{asset('js/bootstrap-notify.js')}}"></script>
-	<script src="{{asset('js/demo.js')}}"></script>
 </head>
 <body>
 
@@ -61,26 +60,28 @@
 			<ul class="nav">
 				<li>
 					<a href="{{route('statics')}}">
-						<i class="pe-7s-graph"></i>
 						<p>آمار</p>
 					</a>
 				</li>
 				<li>
 					<a href="{{route('meetings')}}">
-						<i class="pe-7s-user"></i>
 						<p>جلسات</p>
 					</a>
 				</li>
 				<li>
 					<a href="table.html">
-						<i class="pe-7s-note2"></i>
 						<p>پیام ها</p>
 					</a>
 				</li>
 				<li>
 					<a href="typography.html">
-						<i class="pe-7s-news-paper"></i>
 						<p>اخبار</p>
+					</a>
+				</li>
+
+				<li>
+					<a href="{{route('register')}}">
+						<p>ثبت نام کاربر جدید</p>
 					</a>
 				</li>
 
