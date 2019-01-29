@@ -12,34 +12,62 @@
 */
 
 use Illuminate\Support\Facades\Route;
-Route::get('/', function()
-{
-	return view('welcome');
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// Email Verification Routes...
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::middleware('auth')->group(function () {
+    Route::redirect('/home', 'dashboard/view');
+
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/view', 'DashboardController@dashboardView')->name('dashboard');
+
+
+        //meting
+        Route::prefix('meeting')->group(function () {
+            Route::get('/view', 'MeetingController@View')->name('meetings');
+            Route::get('/show/{Meeting}', 'MeetingController@Show')->name('meetings-show');
+            Route::get('/insertView', 'MeetingController@insertView');
+            Route::post('/insert', 'MeetingController@insert');
+            Route::get('/editView/{Meeting}', 'MeetingController@editView')->name('meetings-edit');
+            Route::post('/edit', 'MeetingController@edit')->name('meetings-edit-post');
+            Route::get('/remove/{Meeting}', 'MeetingController@remove')->name('meetings-remove');
+        })
+        ;
+
+        Route::get('statics', 'StaticsController@index')->name('statics');
+
+    })
+    ;
+})
+;
+
+Route::get('test', function () {
+
+    $event = \App\Model\Event::all();
+
+    return $event;
 });
 
-Route::prefix('dashboard')->group(function()
-{
-	Route::get('/view', 'DashboardController@dashboardView');
-
-
-	//meting
-	Route::prefix('meeting')->group(function()
-	{
-        Route::get('/view', 'MeetingController@View')->name('meetings');
-        Route::get('/show/{Meeting}', 'MeetingController@Show')->name('meetings-show');
-		Route::get('/insertView', 'MeetingController@insertView');
-		Route::post('/insert', 'MeetingController@insert');
-        Route::get('/editView/{Meeting}', 'MeetingController@editView')->name('meetings-edit');
-        Route::post('/edit', 'MeetingController@edit')->name('meetings-edit-post');
-		Route::get('/remove/{Meeting}', 'MeetingController@remove')->name('meetings-remove');
-	});
-
-});
-
-Route::get('test', function()
-{
-
-	$event = \App\Model\Event::all();
-
-	return $event;
-});

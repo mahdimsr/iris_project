@@ -1,110 +1,101 @@
-@font-face
-{
-	font-family: IRANSans-web;
-	font-style: normal;
-	font-weight: bold;
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.eot");
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
+@font-face {
+    font-family: IRANSans-web;
+    font-style: normal;
+    font-weight: bold;
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.eot");
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
 }
 
-@font-face
-{
-	font-family: IRANSans-web;
-	font-style: normal;
-	font-weight: 500;
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Medium.eot");
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Medium.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Medium.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Medium.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Medium.ttf") format("truetype");
+@font-face {
+    font-family: IRANSans-web;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.eot");
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
 }
 
-@font-face
-{
-	font-family: IRANSans-web;
-	font-style: normal;
-	font-weight: 300;
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.eot");
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
+@font-face {
+    font-family: IRANSans-web;
+    font-style: normal;
+    font-weight: 200;
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.eot");
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.ttf") format("truetype");
 }
 
-@font-face
-{
-	font-family: IRANSans-web;
-	font-style: normal;
-	font-weight: 200;
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.eot");
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum)_UltraLight.ttf") format("truetype");
+@font-face {
+    font-family: IRANSans-web;
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).eot");
+    src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).ttf") format("truetype");
 }
 
-@font-face
-{
-	font-family: IRANSans-web;
-	font-style: normal;
-	font-weight: normal;
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).eot");
-	src: url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).eot?#iefix") format("embedded-opentype"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff2") format("woff2"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).woff") format("woff"), url("../fonts/iran_sans_serif/IRANSansWeb(FaNum).ttf") format("truetype");
+body, * {
+    font-family: IRANSans-web, serif !important;
 }
 
-body , *
-{
-	font-family: IRANSans-web, serif !important;
+.set-font {
+    font-family: IRANSans-web, serif !important;
 }
 
-.set-font
-{
-	font-family: IRANSans-web, serif !important;
+.nav > li > a > p {
+    font-family: IRANSans-web, serif;
 }
 
-.nav > li > a > p
-{
-	font-family: IRANSans-web, serif;
+.content {
+    direction: rtl;
 }
 
-.content
-{
-	direction: rtl;
+th {
+    text-align: right;
 }
 
-th
-{
-	text-align: right;
+.col {
+    color: red;
 }
 
-.col
-{
-	color: red;
+.header {
+    font-family: IRANSans-web, serif;
 }
 
-.header
-{
-	font-family: IRANSans-web, serif;
+.remove-btn {
+    text-align: center;
+    margin-top: 23px;
 }
 
-.remove-btn
-{
-	text-align: center;
-	margin-top: 23px;
-}
-
-.add-btn
-{
-	text-align: right;
-	font-size: x-small;
+.add-btn {
+    text-align: right;
+    font-size: x-small;
 }
 
 
-.meeting-show>div{
-	text-align: center;
-	border-right: 1px solid #ddd;
+.meeting-show > div {
+    text-align: center;
+    border-right: 1px solid #ddd;
 }
 
-.meeting-show>div.first{
-	border: none;
+.meeting-show > div.first {
+    border: none;
 }
 
-.meeting-show{
-	border-bottom: 1px solid #ddd;
-	padding-bottom: 20px;
+.meeting-show {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
 }
 
-div.agenda , div.agenda th{
-	text-align: center;
+div.agenda, div.agenda th {
+    text-align: center;
+}
+
+
+.login-form, .reset-form, .register-form {
+    direction: rtl;
+}
+
+.login-form .card-header, .reset-form .card-header, .register-form .card-header {
+    text-align: right;
+}
+
+.login-form .remember-text {
+    margin-right: 17px;
 }
