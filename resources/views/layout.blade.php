@@ -24,7 +24,6 @@
 
 	<!--  CSS for Demo Purpose, don't include it in your project     -->
 	<link href="{{asset('css/demo.css')}}" rel="stylesheet"/>
-	<link href="{{asset('css/custom.css')}}" rel="stylesheet"/>
 	<link href="{{asset('css/persian.datepicker.css')}}" rel="stylesheet"/>
 
 
@@ -69,8 +68,18 @@
 					</a>
 				</li>
 				<li>
-					<a href="table.html">
-						<p>پیام ها</p>
+					<a href="{{route('message-send')}}">
+						<p>ارسال پیام</p>
+					</a>
+				</li>
+				<li>
+					<a href="{{route('message-send-list')}}">
+						<p>پیام های ارسالی</p>
+					</a>
+				</li>
+				<li>
+					<a href="{{route('message-receive-list')}}">
+						<p>پیام های دریافتی</p>
 					</a>
 				</li>
 				<li>
@@ -146,7 +155,9 @@
 
 	</div>
 </div>
-
+	<link href="/css/select2.min.css" rel="stylesheet" />
+	<script src="/js/select2.min.js"></script>
+	<link href="{{asset('css/custom.css')}}" rel="stylesheet"/>
 
 </body>
 

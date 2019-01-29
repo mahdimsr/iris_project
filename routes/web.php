@@ -37,6 +37,21 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::redirect('/home', 'dashboard/view');
     Route::redirect('/', 'dashboard/view');
+    Route::get('getUsers' ,function(){
+        $q = request('q');#str_replace(' ','%20' , request('q'));
+        $search_exploded = explode(" ", $q);
+        $x = 0;
+        $construct = " ";
+        foreach ($search_exploded as $search_each) {
+            $x++;
+            if ($x == 1)
+                $construct .= "name LIKE '%$search_each%' ";
+            else
+                $construct .= "AND name LIKE '%$search_each%' ";
+        }
+
+        return DB::table('user')->whereRaw($construct)->where('id' , '!=' , auth()->user()->id)->take(15)->get();
+    });
 
     // Registration Routes...
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -56,9 +71,16 @@ Route::middleware('auth')->group(function () {
             Route::post('/edit', 'MeetingController@edit')->name('meetings-edit-post');
             Route::get('/remove/{Meeting}', 'MeetingController@remove')->name('meetings-remove');
             Route::post('/document/{Meeting}', 'MeetingController@document')->name('meetings-document');
-        })
-        ;
+        });
 
+        //meting
+        Route::prefix('message')->group(function () {
+            Route::get('/send', 'MessageController@sendView')->name('message-send');
+            Route::post('/send', 'MessageController@send')->name('message-send-post');
+            Route::get('/receive-list', 'MessageController@receiveListView')->name('message-receive-list');
+            Route::get('/send-list', 'MessageController@sendListView')->name('message-send-list');
+            Route::get('/show/{Message}', 'MessageController@show')->name('message-show');
+        });
         Route::get('statics', 'StaticsController@index')->name('statics');
 
         Route::get('/download/{File}', 'FileController@getDownload')->name('download-file');
