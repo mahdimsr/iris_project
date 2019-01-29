@@ -97,8 +97,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/file/accept/{File}', 'FileController@accept')->name('accept-file');
         Route::get('/file/reject/{File}', 'FileController@reject')->name('reject-file');
 
-    })
-    ;
+    });
+    Route::redirect('dashboard/view' , 'statics');
 })
 ;
 
