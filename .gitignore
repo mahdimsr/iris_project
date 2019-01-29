@@ -14,3 +14,5 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .idea
+.idea/iris_project.iml
+.idea/workspace.xml
