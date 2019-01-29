@@ -15,6 +15,14 @@
                             </div>
 
                         @endif
+
+                        @if(session('agenda_error'))
+
+                            <div class="alert alert-danger set-font">
+                                <strong>هشدار!</strong> {{session('agenda_error')}}
+                            </div>
+
+                        @endif
                     </div>
                     <div class="content">
                         <form method="post" action="{{route('meetings-edit-post')}}">
@@ -24,7 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group {{$errors->has('meetingTitle') ? 'has-error' : ''}}">
                                         <label>موضوع جلسه</label>
-                                        <input type="text" class="form-control"
+                                        <input required type="text" class="form-control"
                                                placeholder="عنوان یا موضوعی که قرار است مطرح شود" name="meetingTitle"
                                                value="{{$Meeting->title}}">
                                         <span class="help-block">{{ $errors->first('meetingTitle') }}</span>
@@ -33,7 +41,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group" {{$errors->has('meetingPlace') ? 'has-error' : ''}}>
                                         <label>مکان برگذاری</label>
-                                        <input type="text" class="form-control" name="meetingPlace"
+                                        <input required type="text" class="form-control" name="meetingPlace"
                                                value="{{$Meeting->place}}">
                                         <span class="help-block">{{ $errors->first('meetingPlace') }}</span>
                                     </div>
@@ -45,7 +53,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group calendar-div" {{$errors->has('meetingDate') ? 'has-error' : ''}}>
                                         <label>تاریخ و زمان برگذاری</label>
-                                        <input class="form-control calendar" name="meetingDate"
+                                        <input required class="form-control calendar" name="meetingDate"
                                                value="{{$Meeting->date}}"/>
                                         <span class="help-block">{{ $errors->first('meetingDate') }}</span>
                                     </div>
@@ -71,7 +79,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>عنوان دستور جلسه</label>
-                                                <input name="title[]" class="form-control" value="{{$Agenda->title}}">
+                                                <input required name="title[]" class="form-control" value="{{$Agenda->title}}">
                                             </div>
                                         </div>
 
@@ -91,7 +99,7 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>زمان</label>
-                                                <input name="time[]" type="number" class="form-control" value="{{$Agenda->value_time}}">
+                                                <input required name="time[]" type="number" class="form-control" value="{{$Agenda->value_time}}">
                                             </div>
                                         </div>
                                         <div class="col-md-1">
@@ -138,7 +146,7 @@
             var body = "<div class=\"col-md-4\">" +
                 "<div class=\"form-group\">" +
                 "<label>عنوان دستور جلسه</label>" +
-                "<input name=\"title[]\" class=\"form-control\">" +
+                "<input required name=\"title[]\" class=\"form-control\">" +
                 "</div>" +
                 "</div>" +
                 "<div class=\"col-md-4\">" +
@@ -154,7 +162,7 @@
                 "<div class=\"col-md-3\">" +
                 "<div class=\"form-group\">" +
                 "<label>زمان</label>" +
-                "<input name=\"valueTime[]\" type=\"number\" class=\"form-control\">" +
+                "<input required name=\"time[]\" type=\"number\" class=\"form-control\">" +
                 "</div>" +
                 "</div>" +
 
