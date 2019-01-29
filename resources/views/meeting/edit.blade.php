@@ -22,14 +22,6 @@
                             <input type="text" name="meeting_id" value="{{$Meeting->id}}" hidden>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group" {{$errors->has('meetingPlace') ? 'has-error' : ''}}>
-                                        <label>مکان برگذاری</label>
-                                        <input type="text" class="form-control" name="meetingPlace"
-                                               value="{{$Meeting->place}}">
-                                        <span class="help-block">{{ $errors->first('meetingPlace') }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
                                     <div class="form-group {{$errors->has('meetingTitle') ? 'has-error' : ''}}">
                                         <label>موضوع جلسه</label>
                                         <input type="text" class="form-control"
@@ -38,6 +30,15 @@
                                         <span class="help-block">{{ $errors->first('meetingTitle') }}</span>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" {{$errors->has('meetingPlace') ? 'has-error' : ''}}>
+                                        <label>مکان برگذاری</label>
+                                        <input type="text" class="form-control" name="meetingPlace"
+                                               value="{{$Meeting->place}}">
+                                        <span class="help-block">{{ $errors->first('meetingPlace') }}</span>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="row">

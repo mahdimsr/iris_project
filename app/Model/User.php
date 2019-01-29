@@ -6,6 +6,8 @@ use App\Model\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
@@ -50,10 +52,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  */
 
-class User extends Model
+class User extends Authenticatable
 {
+    use Notifiable;
 	protected $table = 'user';
 	use SoftDeletes;
+	protected $guarded = [];
 	protected $dates = ['deleted_at'];
 
 
