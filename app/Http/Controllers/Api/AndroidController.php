@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Agenda;
 use App\Model\Event;
 use App\Model\Meeting;
+use App\Model\Message;
 use App\Model\Task;
 use Illuminate\Http\Request;
 use Morilog\Jalali\CalendarUtils;
@@ -139,6 +140,34 @@ class AndroidController extends Controller
 		$task->save();
 
 		return 'OK';
+	}
+
+
+
+	public function getMessage(Request $r)
+	{
+		$message = Message::query()->where('receiver_id', '=', $r->input('receiverId'))->with([
+			'sender' => function($query) use ($r)
+			{
+				if ($r->has('senderId'))
+				{
+					$query->where('sender_id', '=', $r->input('senderId'));
+				}
+			},
+		]);
+
+		if ($r->has('state'))
+		{
+			$message->where('is_read', '=', $r->input('state'));
+		}
+
+		if ($r->has('title'))
+		{
+			$message->where('title', 'like', '%' . $r->input('title') . '%');
+		}
+
+
+		return $message->get();
 	}
 
 }

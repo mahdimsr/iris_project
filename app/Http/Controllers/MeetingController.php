@@ -324,6 +324,9 @@ class MeetingController extends Controller {
         $File->meeting_id = $Meeting->id;
         $File->uploader_id = $current_user;
         $File->save();
+
+
+
         return redirect()->back()->with('status', 'فایل با موفقیت آپلود شد');
     }
 }
