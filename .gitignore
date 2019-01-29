@@ -6,11 +6,13 @@ yarn-error.log
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
-
+public/files
 # Laravel 5 & Lumen specific
 public/hot
 storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
+.idea
+.idea/iris_project.iml
 .idea/workspace.xml

@@ -19,9 +19,8 @@ class UserTableSeeder extends Seeder
 			'postId'     => '3',
             'genre'      => 'FEMALE',
             'email'      => 'general@jam1.com',
-			'password'   => '1234',
+			'password'   => bcrypt('qwerty'),
 			'phone'      => '09321234567',
-			'slug'       => str_slug('لیلا مرادی'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
 
@@ -33,9 +32,8 @@ class UserTableSeeder extends Seeder
 			'postId'     => '2',
 			'genre'      => 'FEMALE',
             'email'      => 'qwerty@gmail.com',
-            'password'   => '1234',
+            'password'   => bcrypt('qwerty'),
 			'phone'      => '09301234321',
-			'slug'       => str_slug('سارا بیات'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
 
@@ -47,9 +45,8 @@ class UserTableSeeder extends Seeder
 			'postId'     => '4',
 			'genre'      => 'MALE',
             'email'      => 'qwerty1@gmail.com',
-            'password'   => '1234',
+            'password'   => bcrypt('qwerty'),
 			'phone'      => '09351603029',
-			'slug'       => str_slug('مهدی منصوری'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
 
@@ -60,13 +57,25 @@ class UserTableSeeder extends Seeder
 			'name'       => 'سامان رضایی',
 			'postId'     => '4',
 			'genre'      => 'MALE',
-			'password'   => '1234',
+			'password'   => bcrypt('qwerty'),
             'email'      => 'qwerty2@gmail.com',
             'phone'      => '09123456789',
-			'slug'       => str_slug('سامان رضایی'),
 			'created_at' => \Carbon\Carbon::now(),
 			'updated_at' => \Carbon\Carbon::now()
 
 		]);
+
+        DB::table('user')->insert([
+
+            'name'       => 'امیر پیرمرادیان',
+            'postId'     => '1',
+            'genre'      => 'MALE',
+            'email'      => 'amirpirmoradian94@gmail.com',
+            'password'   => bcrypt('qwerty'),
+            'phone'      => '09134744677',
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now()
+
+        ]);
 	}
 }

@@ -6,7 +6,6 @@ use App\Lib\Enum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Morilog\Jalali\CalendarUtils;
-use Morilog\Jalali\Jalalian;
 
 
 /**
@@ -44,37 +43,35 @@ use Morilog\Jalali\Jalalian;
  * @method static \Illuminate\Database\Query\Builder|\App\Model\Meeting withoutTrashed()
  * @mixin \Eloquent
  */
-class Meeting extends Model
-{
-	protected $table = 'meeting';
+class Meeting extends Model {
+    protected $table = 'meeting';
 
-	use SoftDeletes;
+    use SoftDeletes;
 
-	protected $appends = ['jalaliDate','persianState'];
-
+    protected $appends = ['jalaliDate', 'persianState'];
 
 
-	public function getjalaliDateAttribute()
+    public function getjalaliDateAttribute() {
+
+        return CalendarUtils::strftime('Y-d-m h:m:s', $this->date);
+    }
+
+
+    public function getpersianStateAttribute() {
+        return Enum::meetingState($this->state);
+    }
+
+
+    public function agenda() {
+        return $this->hasMany(Agenda::class, 'meetingId')->with('user');
+    }
+
+
+    public function files()
 	{
+		return $this->hasMany(File::class, 'meeting_id');
 
-		return CalendarUtils::strftime('Y-d-m h:m:s', $this->date);
 	}
-
-
-
-	public function getpersianStateAttribute()
-	{
-		return Enum::meetingState($this->state);
-	}
-
-
-
-	public function agenda()
-	{
-		return $this->hasMany(Agenda::class, 'meetingId')->with('user');
-	}
-
-
 
 	public function agendaUser($userId)
 	{
