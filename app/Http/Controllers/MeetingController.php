@@ -21,10 +21,10 @@ class MeetingController extends Controller {
         if ($PostID == 3) {
             $meetings = Meeting::paginate(15);
         } else {
-            $meetings = Meeting::paginate(15);
-            $agenda = Agenda::query()->with('meeting')->where('userId', $current_user)->get();
+            $meetings = Meeting::query()->whereIn('id' , function ($query){
+                $query->select('meetingId')->from('agenda')->where('userId' , auth()->user()->id);
+            })->paginate(15);
         }
-        $meetings = Meeting::paginate(15);
 
         return view('meeting.view')->with('meetings', $meetings);
     }
