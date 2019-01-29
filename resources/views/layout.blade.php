@@ -122,12 +122,7 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a href="">
-								{{--todo create profile--}}
-								<p>حساب کابری</p>
-							</a>
-						</li>
+
 						<li>
 							<a href="{{ route('logout') }}"
 							   onclick="event.preventDefault();
