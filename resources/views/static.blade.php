@@ -12,7 +12,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <h6>هیچ اخبار خوانده نشده ای وجود ندارد.</h6>
+                    <h6 style="color: #4673ff;">هیچ اخبار خوانده نشده ای وجود ندارد.</h6>
                 @endif
             </div>
             <div class="col-md-6">
